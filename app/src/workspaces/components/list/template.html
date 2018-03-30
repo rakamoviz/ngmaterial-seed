@@ -1,0 +1,9 @@
+<!-- NOTE: @see ngClick for how to pass data selection to outside expression -->
+<md-list>
+  <md-list-item ng-repeat="workspace in $ctrl.workspaces">
+    <md-button ng-click="$ctrl.activateWorkspace({workspace:workspace})" ng-class="{'selected' : workspace === $ctrl.activeWorkspace }">
+      <md-icon md-svg-icon="{{workspace.icon}}" class="avatar"></md-icon>
+      {{workspace.name}}
+    </md-button>
+  </md-list-item>
+</md-list>

@@ -2,8 +2,8 @@
   "name": "ngmaterial-seed",
   "private": true,
   "version": "0.0.3",
-  "description": "ngmaterial-seed",
-  "repository": "https://github.com/angular/material-start",
+  "description": "ngmaterial-seed, based on https://github.com/angular/material-start",
+  "repository": "https://github.com/rakamoviz/ngmaterial-seed",
   "license": "MIT",
   "jspm": {
     "directories": {

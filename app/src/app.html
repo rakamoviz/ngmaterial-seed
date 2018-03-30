@@ -1,0 +1,30 @@
+<!-- Container #1 (see wireframe) -->
+<md-toolbar layout="row" class="md-toolbar-tools">
+  <md-button class="menu md-icon-button" hide-gt-sm ng-click="app.toggleWorkspacesList()"
+             aria-label="Show Workspaces List">
+    <md-icon md-svg-icon="menu"></md-icon>
+  </md-button>
+  <h1>ngmaterial-seed</h1>
+</md-toolbar>
+
+<!-- Container #2 -->
+<div flex layout="row">
+
+  <!-- Container #3 -->
+  <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')"
+              md-component-id="left" ng-click="$ctrl.toggleWorkspacesList()">
+    <!-- Custom UsersList component -->
+    <workspaces-list
+      workspaces="$ctrl.workspaces"
+      active-workspace="$ctrl.activeWorkspace"
+      on-selected="$ctrl.selectWorkspace(workspace)">
+    </workspaces-list>
+  </md-sidenav>
+
+  <!-- Container #4 -->
+  <md-content flex id="content">
+    <!-- Custom UserDetails component -->
+    <ui-view></ui-view>
+  </md-content>
+
+</div>

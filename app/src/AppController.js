@@ -1,44 +1,42 @@
 /**
  * Main App Controller for the AngularJS Material Starter App
- * @param UsersDataService
  * @param $mdSidenav
  * @constructor
  */
-function AppController(UsersDataService, $mdSidenav) {
-  var self = this;
-
-  self.selected     = null;
-  self.users        = [ ];
-  self.selectUser   = selectUser;
-  self.toggleList   = toggleUsersList;
-
-  // Load all registered users
-
-  UsersDataService
-        .loadAllUsers()
-        .then( function( users ) {
-          self.users    = [].concat(users);
-          self.selected = users[0];
-        });
-
-  // *********************************
-  // Internal methods
-  // *********************************
-
-  /**
-   * Hide or Show the 'left' sideNav area
-   */
-  function toggleUsersList() {
-    $mdSidenav('left').toggle();
+class AppController {
+  constructor($mdSidenav) {
+    this.$mdSidenav = $mdSidenav
+    this.workspaces = [
+      {
+        states: {
+          initial: {
+            name: 'repositories_main'
+          }
+        },
+        name: 'Repositories',
+        icon: 'google_plus'
+      },
+      {
+        states: {
+          initial: {
+            name: 'settings_main'
+          }
+        },
+        name: 'Settings',
+        icon: 'hangouts'
+      }
+    ]
+  
+    this.activeWorkspace = this.workspaces[0];
   }
 
-  /**
-   * Select the current avatars
-   * @param menuId
-   */
-  function selectUser ( user ) {
-    self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+  toggleWorkspacesList() {
+    this.$mdSidenav('left').toggle();
+  }
+
+  selectWorkspace ( workspace ) {
+    this.activeWorkspace = workspace;
   }
 }
 
-export default [ 'UsersDataService', '$mdSidenav', AppController ];
+export default [ '$mdSidenav', AppController ];

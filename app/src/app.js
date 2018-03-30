@@ -4,11 +4,13 @@ import angular from 'angular';
 import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
+import 'angular-ui-router';
 
+import template from 'src/app.html!text'
 import AppController from 'src/AppController';
-import Users from 'src/users/Users';
+import Workspaces from 'src/workspaces/module';
 
-export default angular.module( 'starter-app', [ 'ngMaterial', Users.name ] )
+export default angular.module( 'app', [ 'ngMaterial', 'ui.router', Workspaces.name ] )
   .config(($mdIconProvider, $mdThemingProvider) => {
     // Register the user `avatar` icons
     $mdIconProvider
@@ -24,4 +26,13 @@ export default angular.module( 'starter-app', [ 'ngMaterial', Users.name ] )
       .primaryPalette('brown')
       .accentPalette('red');
   })
-  .controller('AppController', AppController);
+  .controller('AppController', AppController)
+  .component('body', {
+    template: template,
+  	controller: AppController
+  })
+  .config(['$stateProvider', '$urlRouterProvider', function(
+    $stateProvider, $urlRouterProvider
+  ) {
+		//console.log($stateProvider, $urlRouterProvider)
+  }]);
