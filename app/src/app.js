@@ -1,4 +1,5 @@
 // Load libraries
+import _ from 'lodash'
 import angular from 'angular';
 
 import 'angular-animate';
@@ -10,7 +11,16 @@ import template from 'src/app.html!text'
 import AppController from 'src/AppController';
 import Workspaces from 'src/workspaces/module';
 
-export default angular.module( 'app', [ 'ngMaterial', 'ui.router', Workspaces.name ] )
+import * as modules from 'src/modules'
+import * as config from 'src/config'
+
+const appDependencies = [ 'ngMaterial', 'ui.router', Workspaces.name ]
+
+_.forEach(modules, (module) => {
+	appDependencies.push(module.name)
+})
+
+export default angular.module( 'app', appDependencies )
   .config(($mdIconProvider, $mdThemingProvider) => {
     // Register the user `avatar` icons
     $mdIconProvider
@@ -26,6 +36,7 @@ export default angular.module( 'app', [ 'ngMaterial', 'ui.router', Workspaces.na
       .primaryPalette('brown')
       .accentPalette('red');
   })
+  .constant("config", config)
   .controller('AppController', AppController)
   .component('body', {
     template: template,

@@ -1,0 +1,7 @@
+const middleware = {
+  baseUrl: "http://localhost:3000/api"
+}
+
+export {
+  middleware
+}

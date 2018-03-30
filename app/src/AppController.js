@@ -4,7 +4,8 @@
  * @constructor
  */
 class AppController {
-  constructor($mdSidenav) {
+  constructor($state, $mdSidenav) {
+    this.$state = $state
     this.$mdSidenav = $mdSidenav
     this.workspaces = [
       {
@@ -28,6 +29,10 @@ class AppController {
     ]
   
     this.activeWorkspace = this.workspaces[0];
+    setTimeout(() => {
+      this.$state.go(this.activeWorkspace.states.initial.name)
+    })
+    
   }
 
   toggleWorkspacesList() {
@@ -39,4 +44,4 @@ class AppController {
   }
 }
 
-export default [ '$mdSidenav', AppController ];
+export default [ '$state', '$mdSidenav', AppController ];

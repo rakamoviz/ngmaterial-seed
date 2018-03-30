@@ -1,8 +1,8 @@
-class WorkspacesListController {
+class Controller {
   constructor() {
   }
 }
 
 export default [
-  WorkspacesListController
+  Controller
 ]
