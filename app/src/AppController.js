@@ -9,30 +9,18 @@ class AppController {
     this.$mdSidenav = $mdSidenav
     this.workspaces = [
       {
-        states: {
-          initial: {
-            name: 'repositories_main'
-          }
-        },
+        initialState: 'repositories_main',
         name: 'Repositories',
         icon: 'google_plus'
       },
       {
-        states: {
-          initial: {
-            name: 'settings_main'
-          }
-        },
+        initialState: 'settings_main',
         name: 'Settings',
         icon: 'hangouts'
       }
     ]
-  
-    this.activeWorkspace = this.workspaces[0];
-    setTimeout(() => {
-      this.$state.go(this.activeWorkspace.states.initial.name)
-    })
-    
+
+    this.selectWorkspace(this.workspaces[0])
   }
 
   toggleWorkspacesList() {
@@ -41,6 +29,9 @@ class AppController {
 
   selectWorkspace ( workspace ) {
     this.activeWorkspace = workspace;
+    setTimeout(() => {
+      this.$state.go(this.activeWorkspace.initialState)
+    })
   }
 }
 

@@ -6,26 +6,26 @@ import * as pages from './pages'
 //import * as components from './components'
 import routes from './routes'
 
-let RepositoriesModule = angular.module('repositories', ['ngMaterial', 'ui.router'])
+let SettingsModule = angular.module('settings', ['ngMaterial', 'ui.router'])
 
 _.forEach(services, (serviceClass, serviceName) => {
-	RepositoriesModule.service(serviceName, serviceClass)
+	SettingsModule.service(serviceName, serviceClass)
 })
 
 _.forEach(pages, (pageDefinition) => {
-	RepositoriesModule.component(pageDefinition.name, pageDefinition.config)
+	SettingsModule.component(pageDefinition.name, pageDefinition.config)
 })
 
 /*
 _.forEach(components, (componentDefinition) => {
-	RepositoriesModule.component(componentDefinition.name, componentDefinition.config)
+	SettingsModule.component(componentDefinition.name, componentDefinition.config)
 })
 */
 
-RepositoriesModule.config(['$stateProvider', '$urlRouterProvider',
+SettingsModule.config(['$stateProvider', '$urlRouterProvider',
 	($stateProvider, $urlRouterProvider) => {
 		routes.states.forEach((state) => $stateProvider.state(state))
 	}
 ])
 
-export default RepositoriesModule
+export default SettingsModule

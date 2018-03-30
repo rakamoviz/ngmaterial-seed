@@ -1,12 +1,12 @@
 import controller from './controller';
 
 export default {
-  name : 'repositoriesMainPage',
+  name : 'settingsMainPage',
   config : {
-    templateUrl: 'src/repositories/pages/main/template.html',
+    templateUrl: 'src/settings/pages/main/template.html',
     controller : controller,
     bindings   : {
-
+      
     }
   }
 };
