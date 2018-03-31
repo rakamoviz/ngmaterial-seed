@@ -4,9 +4,10 @@
  * @constructor
  */
 class AppController {
-  constructor($state, $mdSidenav) {
+  constructor($state, $mdSidenav, $auth) {
     this.$state = $state
     this.$mdSidenav = $mdSidenav
+    this.$auth = $auth
     this.workspaces = [
       {
         initialState: 'repositories_main',
@@ -33,6 +34,10 @@ class AppController {
       this.$state.go(this.activeWorkspace.initialState)
     })
   }
+
+  isLoggedIn() {
+    return this.$auth.isAuthenticated()
+  }
 }
 
-export default [ '$state', '$mdSidenav', AppController ];
+export default [ '$state', '$mdSidenav', '$auth', AppController ];

@@ -1,7 +1,8 @@
 class Controller {
-  constructor($state, $stateParams, repositoriesService) {
+  constructor($state, $stateParams, $auth, repositoriesService, accountService) {
     this.$state = $state
     this.$stateParams = $stateParams
+    this.$auth = $auth
     this.repositoriesService = repositoriesService
   }
 
@@ -10,8 +11,14 @@ class Controller {
       repositories => this.repositories = repositories
     )
   }
+
+  authenticate() {
+    this.$auth.authenticate("github").then(x => {
+      console.log('You have successfully signed in! ', x);
+    });
+  };
 }
 
 export default [
-  '$state', '$stateParams', 'RepositoriesService', Controller
+  '$state', '$stateParams', '$auth', 'RepositoriesService', 'AccountService', Controller
 ];

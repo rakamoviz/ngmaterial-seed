@@ -20,6 +20,7 @@ System.config({
     "css": "github:systemjs/plugin-css@0.1.21",
     "json": "github:systemjs/plugin-json@0.1.0",
     "lodash": "npm:lodash@4.17.5",
+    "satellizer": "github:sahat/satellizer@0.15.5",
     "text": "github:systemjs/plugin-text@0.0.4",
     "traceur": "github:jmcriffey/bower-traceur@0.0.93",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.93",

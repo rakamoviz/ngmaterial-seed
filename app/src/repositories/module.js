@@ -5,6 +5,7 @@ import * as services from './services'
 import * as pages from './pages'
 //import * as components from './components'
 import routes from './routes'
+import helper from '../helper'
 
 let RepositoriesModule = angular.module('repositories', ['ngMaterial', 'ui.router'])
 
@@ -24,7 +25,7 @@ _.forEach(components, (componentDefinition) => {
 
 RepositoriesModule.config(['$stateProvider', '$urlRouterProvider',
 	($stateProvider, $urlRouterProvider) => {
-		routes.states.forEach((state) => $stateProvider.state(state))
+		routes.states.forEach(state => $stateProvider.state(helper.augmentState(state)))
 	}
 ])
 

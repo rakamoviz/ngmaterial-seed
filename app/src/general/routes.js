@@ -3,19 +3,19 @@ import * as pages from './pages'
 export default {
   states: [
     {
-      name : 'repositories_main',
-      url  : '/repositories/main',
+      name : 'login',
+      url  : '/login',
       reloadOnSearch : false,
       views: {
         '@': {
-          component: pages.MainPage.name
+          component: pages.LoginPage.name
         }
       },
       params: {
       },
       resolve: {
       },
-      loginRequired: true
+      skipIfLoggedIn: true
     }
   ]
 }

@@ -6,6 +6,7 @@ import 'angular-animate';
 import 'angular-aria';
 import 'angular-material';
 import 'angular-ui-router';
+import 'satellizer';
 
 import template from 'src/app.html!text'
 import AppController from 'src/AppController';
@@ -14,14 +15,14 @@ import Workspaces from 'src/workspaces/module';
 import * as modules from 'src/modules'
 import * as config from 'src/config'
 
-const appDependencies = [ 'ngMaterial', 'ui.router', Workspaces.name ]
+const appDependencies = [ 'ngMaterial', 'ui.router', 'satellizer', Workspaces.name ]
 
 _.forEach(modules, (module) => {
 	appDependencies.push(module.name)
 })
 
 export default angular.module( 'app', appDependencies )
-  .config(($mdIconProvider, $mdThemingProvider) => {
+  .config(($mdIconProvider, $mdThemingProvider, $authProvider) => {
     // Register the user `avatar` icons
     $mdIconProvider
       .defaultIconSet("./assets/svg/avatars.svg", 128)
@@ -35,6 +36,18 @@ export default angular.module( 'app', appDependencies )
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
       .accentPalette('red');
+
+    $authProvider.github({
+      url: 'http://127.0.0.1:3000/auth/github',
+      clientId: '42f2b5c1e5b523bb55aa',
+      authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+      redirectUri: window.location.origin,
+      optionalUrlParams: ['scope'],
+      scope: ['public_repo'],
+      scopeDelimiter: ' ',
+      oauthType: '2.0',
+      popupOptions: { width: 1020, height: 618 }
+    });
   })
   .constant("config", config)
   .controller('AppController', AppController)
