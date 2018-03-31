@@ -4,9 +4,10 @@
  * @constructor
  */
 class AppController {
-  constructor($mdSidenav, $auth, workspacesService) {
+  constructor($mdSidenav, $auth, $state, workspacesService) {
     this.$mdSidenav = $mdSidenav
     this.$auth = $auth
+    this.$state = $state
     this.workspacesService = workspacesService
   }
 
@@ -26,9 +27,15 @@ class AppController {
     return this.$auth.isAuthenticated()
   }
 
+  logout() {
+    return this.$auth.logout().then(() => {
+      this.$state.go("login")
+    })
+  }
+
   selectWorkspace(workspace) {
     this.workspacesService.selectWorkspace(workspace)
   }
 }
 
-export default [ '$mdSidenav', '$auth', 'WorkspacesService', AppController ];
+export default [ '$mdSidenav', '$auth', '$state', 'WorkspacesService', AppController ];

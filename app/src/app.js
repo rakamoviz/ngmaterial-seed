@@ -31,7 +31,9 @@ export default angular.module( 'app', appDependencies )
       .icon("google_plus", "./assets/svg/google_plus.svg", 24)
       .icon("hangouts", "./assets/svg/hangouts.svg", 24)
       .icon("twitter", "./assets/svg/twitter.svg", 24)
-      .icon("phone", "./assets/svg/phone.svg", 24);
+      .icon("phone", "./assets/svg/phone.svg", 24)
+      .icon("settings", "./assets/svg/ic_settings_black_48px.svg", 24)
+      .icon("directions_run", "./assets/svg/ic_directions_run_black_48px.svg", 24);
 
     $mdThemingProvider.theme('default')
       .primaryPalette('brown')
