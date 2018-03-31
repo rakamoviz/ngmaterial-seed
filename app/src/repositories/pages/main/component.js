@@ -6,7 +6,7 @@ export default {
     templateUrl: 'src/repositories/pages/main/template.html',
     controller : controller,
     bindings   : {
-
+      profile: "<"
     }
   }
 };

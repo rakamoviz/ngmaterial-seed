@@ -4,12 +4,6 @@ class Controller {
     this.$stateParams = $stateParams
     this.repositoriesService = repositoriesService
   }
-
-  onInit() {
-    this.repositoriesService.getRepositories().then(
-      repositories => this.repositories = repositories
-    )
-  }
 }
 
 export default [

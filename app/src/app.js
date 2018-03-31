@@ -22,7 +22,8 @@ _.forEach(modules, (module) => {
 })
 
 export default angular.module( 'app', appDependencies )
-  .config(($mdIconProvider, $mdThemingProvider, $authProvider) => {
+  .constant("config", config)
+  .config(($mdIconProvider, $mdThemingProvider, $authProvider, config) => {
     // Register the user `avatar` icons
     $mdIconProvider
       .defaultIconSet("./assets/svg/avatars.svg", 128)
@@ -40,18 +41,17 @@ export default angular.module( 'app', appDependencies )
       .accentPalette('red');
 
     $authProvider.github({
-      url: 'http://127.0.0.1:3000/auth/github',
-      clientId: '42f2b5c1e5b523bb55aa',
+      url: config.github.authUrl,
+      clientId: config.github.clientId,
       authorizationEndpoint: 'https://github.com/login/oauth/authorize',
       redirectUri: window.location.origin,
       optionalUrlParams: ['scope'],
-      scope: ['public_repo'],
+      scope: config.github.scopes,
       scopeDelimiter: ' ',
       oauthType: '2.0',
-      popupOptions: { width: 1020, height: 618 }
+      popupOptions: config.github.popupOptions
     });
   })
-  .constant("config", config)
   .controller('AppController', AppController)
   .component('body', {
     template: template,
