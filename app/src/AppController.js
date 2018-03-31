@@ -25,6 +25,10 @@ class AppController {
   isLoggedIn() {
     return this.$auth.isAuthenticated()
   }
+
+  selectWorkspace(workspace) {
+    this.workspacesService.selectWorkspace(workspace)
+  }
 }
 
 export default [ '$mdSidenav', '$auth', 'WorkspacesService', AppController ];
