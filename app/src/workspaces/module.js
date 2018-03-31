@@ -1,8 +1,17 @@
-// Load the custom app ES6 modules
-import WorkspacesList from './components/list/component';
+import _ from 'lodash'
+import angular from 'angular'
+import 'angular-ui-router'
+import * as components from './components'
+import * as services from './services'
 
-// Define the AngularJS 'features' module
+let WorkspacesModule = angular.module('workspaces', ['ngMaterial', 'ui.router'])
 
-export default angular
-  .module("workspaces", ['ngMaterial'])
-  .component(WorkspacesList.name, WorkspacesList.config);
+_.forEach(services, (serviceClass, serviceName) => {
+  WorkspacesModule.service(serviceName, serviceClass)
+})
+
+_.forEach(components, (componentDefinition) => {
+  WorkspacesModule.component(componentDefinition.name, componentDefinition.config)
+})
+
+export default WorkspacesModule

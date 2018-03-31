@@ -12,7 +12,7 @@ class AccountService {
       return Promise.resolve(this.profile)
     } else {
       if (this.profile) return Promise.resolve(this.profile)
-      return $http.get(this.config.middleware.baseUrl + '/api/me').then(profile => {
+      return this.$http.get(this.config.middleware.baseUrl + 'api/me').then(profile => {
         this.profile = profile
         return profile
       });

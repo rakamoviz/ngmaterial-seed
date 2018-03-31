@@ -4,3 +4,9 @@ Client ID
 42f2b5c1e5b523bb55aa
 Client Secret
 f53dcdfe42bc7f771401b91f49be06c7b8b36aa5
+
+https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/
+https://developer.github.com/v3/
+https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization  
+https://developer.github.com/apps/building-oauth-apps/scopes-for-oauth-apps/#available-scopes
+https://github.com/sahat/satellizer/blob/master/examples/client/app.js

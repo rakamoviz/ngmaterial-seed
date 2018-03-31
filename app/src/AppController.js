@@ -4,35 +4,22 @@
  * @constructor
  */
 class AppController {
-  constructor($state, $mdSidenav, $auth) {
-    this.$state = $state
+  constructor($mdSidenav, $auth, workspacesService) {
     this.$mdSidenav = $mdSidenav
     this.$auth = $auth
-    this.workspaces = [
-      {
-        initialState: 'repositories_main',
-        name: 'Repositories',
-        icon: 'google_plus'
-      },
-      {
-        initialState: 'settings_main',
-        name: 'Settings',
-        icon: 'hangouts'
-      }
-    ]
-
-    this.selectWorkspace(this.workspaces[0])
+    this.workspacesService = workspacesService
   }
 
   toggleWorkspacesList() {
     this.$mdSidenav('left').toggle();
   }
 
-  selectWorkspace ( workspace ) {
-    this.activeWorkspace = workspace;
-    setTimeout(() => {
-      this.$state.go(this.activeWorkspace.initialState)
-    })
+  get workspaces() {
+    return this.workspacesService.workspaces
+  }
+
+  get activeWorkspace() {
+    return this.workspacesService.activeWorkspace
   }
 
   isLoggedIn() {
@@ -40,4 +27,4 @@ class AppController {
   }
 }
 
-export default [ '$state', '$mdSidenav', '$auth', AppController ];
+export default [ '$mdSidenav', '$auth', 'WorkspacesService', AppController ];

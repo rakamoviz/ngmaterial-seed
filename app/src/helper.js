@@ -2,14 +2,6 @@
  * Helper auth functions
  */
 var skipIfLoggedIn = ['$q', '$auth', function($q, $auth) {
-  var deferred = $q.defer();
-  if ($auth.isAuthenticated()) {
-    deferred.reject();
-  } else {
-    deferred.resolve();
-  }
-  return deferred.promise;
-
   return new Promise((resolve, reject) => {
     if ($auth.isAuthenticated()) {
       reject(false)
@@ -29,9 +21,14 @@ var loginRequired = ['$state', '$auth', function($state, $auth) {
   })
 }];
 
+var getProfile = ['AccountService', function(accountService) {
+  return accountService.getProfile()
+}];
+
 function augmentState(state) {
   if (state.loginRequired) {
     state.resolve.loginRequired = loginRequired
+    state.resolve.profile = getProfile
   } else {
     delete state.resolve.loginRequired
   }
