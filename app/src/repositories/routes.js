@@ -14,6 +14,7 @@ export default {
       params: {
       },
       resolve: {
+        repositories: RepositoriesService => RepositoriesService.getRepositories()
       },
       loginRequired: true
     }

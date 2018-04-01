@@ -23,10 +23,8 @@ _.forEach(components, (componentDefinition) => {
 })
 */
 
-RepositoriesModule.config(['$stateProvider', '$urlRouterProvider',
-	($stateProvider, $urlRouterProvider) => {
-		routes.states.forEach(state => $stateProvider.state(helper.augmentState(state)))
-	}
-])
+RepositoriesModule.config(($stateProvider, $urlRouterProvider) => {
+	routes.states.forEach(state => $stateProvider.state(helper.augmentState(state)))
+})
 
 export default RepositoriesModule

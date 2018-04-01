@@ -12,12 +12,14 @@ class AccountService {
       return Promise.resolve(this.profile)
     } else {
       if (this.profile) return Promise.resolve(this.profile)
-      return this.$http.get(this.config.middleware.baseUrl + 'api/me', {params: {
-        access_token: this.$auth.getToken()
-      }}).then(response => {
+      return this.$http.get(this.config.middleware.baseUrl + 'api/me', {
+        headers: {
+          Authorization: "Bearer " + this.$auth.getToken()
+        }
+      }).then(response => {
         this.profile = response.data
         return this.profile
-      });
+      })
     }
   }
 }

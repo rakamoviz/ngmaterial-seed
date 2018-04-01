@@ -1,4 +1,4 @@
-import controller from './controller';
+import controller from './controller'
 
 export default {
   name : 'repositoriesMainPage',
@@ -6,7 +6,7 @@ export default {
     templateUrl: 'src/repositories/pages/main/template.html',
     controller : controller,
     bindings   : {
-      profile: "<"
+      profile: "<", repositories: "<"
     }
   }
-};
+}

@@ -8,13 +8,12 @@ class Controller {
   }
 
   authenticate() {
-    return this.$auth.authenticate("github").then(x => {
-      console.log('You have successfully signed in! ', x);
-      return this.workspacesService.selectWorkspace()
-    });
-  };
+    return this.$auth.authenticate("github").then(
+      () => this.workspacesService.selectWorkspace()
+    )
+  }
 }
 
 export default [
   '$state', '$stateParams', '$auth', 'AccountService', 'WorkspacesService', Controller
-];
+]

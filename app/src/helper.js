@@ -1,7 +1,7 @@
 /**
  * Helper auth functions
  */
-var skipIfLoggedIn = ['$q', '$auth', function($q, $auth) {
+var skipIfLoggedIn = ($q, $auth) => {
   return new Promise((resolve, reject) => {
     if ($auth.isAuthenticated()) {
       reject(false)
@@ -9,9 +9,9 @@ var skipIfLoggedIn = ['$q', '$auth', function($q, $auth) {
       resolve(true)
     }
   })
-}];
+}
 
-var loginRequired = ['$state', '$auth', function($state, $auth) {
+var loginRequired = ($state, $auth) => {
   return new Promise((resolve, reject) => {
     if ($auth.isAuthenticated() == false) {
       setTimeout(() => $state.go('login'))
@@ -19,11 +19,9 @@ var loginRequired = ['$state', '$auth', function($state, $auth) {
 
     resolve(true)
   })
-}];
+}
 
-var getProfile = ['AccountService', function(accountService) {
-  return accountService.getProfile()
-}];
+var getProfile = AccountService => AccountService.getProfile()
 
 function augmentState(state) {
   if (state.loginRequired) {

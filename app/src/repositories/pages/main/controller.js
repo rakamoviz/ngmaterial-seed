@@ -8,4 +8,4 @@ class Controller {
 
 export default [
   '$state', '$stateParams', 'RepositoriesService', Controller
-];
+]

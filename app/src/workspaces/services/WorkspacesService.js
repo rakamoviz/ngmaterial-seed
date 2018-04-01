@@ -29,4 +29,4 @@ class WorkspacesService {
   }
 }
 
-export default ['$state', WorkspacesService];
+export default ['$state', WorkspacesService]

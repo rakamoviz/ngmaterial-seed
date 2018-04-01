@@ -1,4 +1,4 @@
-import controller from './controller';
+import controller from './controller'
 export default {
   name : 'workspacesList',
   config : {
@@ -6,4 +6,4 @@ export default {
     controller : controller,
     templateUrl : 'src/workspaces/components/list/template.html'
   }
-};
+}

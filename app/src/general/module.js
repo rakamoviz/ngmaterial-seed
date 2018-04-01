@@ -15,10 +15,8 @@ _.forEach(pages, (pageDefinition) => {
 	GeneralModule.component(pageDefinition.name, pageDefinition.config)
 })
 
-GeneralModule.config(['$stateProvider', '$urlRouterProvider',
-	($stateProvider, $urlRouterProvider) => {
-    routes.states.forEach(state => $stateProvider.state(helper.augmentState(state)))
-	}
-])
+GeneralModule.config(($stateProvider, $urlRouterProvider) => {
+	_.forEach(routes.states, state => $stateProvider.state(helper.augmentState(state)))
+})
 
 export default GeneralModule

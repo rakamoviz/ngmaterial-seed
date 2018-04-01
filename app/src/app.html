@@ -25,10 +25,9 @@
 
 <!-- Container #2 -->
 <div flex layout="row" ng-if="$ctrl.isLoggedIn()">
-
   <!-- Container #3 -->
   <md-sidenav class="md-whiteframe-4dp" md-is-locked-open="$mdMedia('gt-sm')"
-              md-component-id="left" ng-click="$ctrl.toggleWorkspacesList()">
+    md-component-id="left" ng-click="$ctrl.toggleWorkspacesList()">
     <!-- Custom UsersList component -->
     <workspaces-list
       workspaces="$ctrl.workspaces"
@@ -37,12 +36,9 @@
     </workspaces-list>
   </md-sidenav>
 
-  <!-- Container #4 -->
-  <md-content flex id="content">
-    <!-- Custom UserDetails component -->
+  <md-content flex layout-padding>
     <ui-view></ui-view>
   </md-content>
-
 </div>
 
 <div flex layout="row" ng-if="$ctrl.isLoggedIn() == false">

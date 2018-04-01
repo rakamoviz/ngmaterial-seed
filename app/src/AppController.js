@@ -12,7 +12,7 @@ class AppController {
   }
 
   toggleWorkspacesList() {
-    this.$mdSidenav('left').toggle();
+    this.$mdSidenav('left').toggle()
   }
 
   get workspaces() {
@@ -38,4 +38,4 @@ class AppController {
   }
 }
 
-export default [ '$mdSidenav', '$auth', '$state', 'WorkspacesService', AppController ];
+export default ['$mdSidenav', '$auth', '$state', 'WorkspacesService', AppController]

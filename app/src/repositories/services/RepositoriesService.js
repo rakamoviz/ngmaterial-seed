@@ -1,18 +1,23 @@
 class RepositoriesService {
-  constructor($q, $timeout, $http, config) {
+  constructor($q, $timeout, $http, accountService, config) {
     this.$q = $q
     this.$timeout = $timeout
     this.$http = $http
+    this.accountService = accountService
     this.config = config
   }
 
   getRepositories() {
-    return Promise((resolve, reject) => {
-      resolve([
-        {name: "repo 1"}
-      ])
+    return this.accountService.getProfile().then(profile => {
+      if (profile == undefined) throw "profile is null"
+      console.log(this.config.github.baseUrl + "user/repos", ":", profile.github.pass.access_token)
+      return this.$http.get(this.config.github.baseUrl + "user/repos", {
+        headers: {
+          Authorization: "Bearer " + profile.github.pass.access_token
+        }
+      })
     })
   }
 }
 
-export default ['$q', '$timeout', '$http', 'config', RepositoriesService];
+export default ['$q', '$timeout', '$http', 'AccountService', 'config', RepositoriesService]
