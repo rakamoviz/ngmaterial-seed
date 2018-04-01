@@ -29,7 +29,7 @@ class AppController {
 
   logout() {
     return this.$auth.logout().then(() => {
-      this.$state.go("login")
+      this.$state.reload(this.$state.root)
     })
   }
 
