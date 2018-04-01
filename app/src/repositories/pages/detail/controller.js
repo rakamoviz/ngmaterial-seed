@@ -18,7 +18,7 @@ class Controller {
       repo: this.repo
     }, ev)).then(issueForm => {
       return this.repositoriesService.createIssue(this.repo, issueForm).then(() => {
-        this.$state.reload("repositories.detail")
+        setTimeout(() => this.reloadIssues())
       })
     })
   }
