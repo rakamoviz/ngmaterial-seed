@@ -1,0 +1,106 @@
+Test plan:
+
+1. Verify (clean-slate) login function.
+   Desc: this verifies that by logging-in to this application, you will also be logged in automatically to github site.
+   
+   Steps:
+   1. Ensure your github account knows nothing about this application
+      - Open a browser tab, navigate to github.com
+      - Click the avatar on the upper left corner; context menu will show up
+      - Click the "Settings" menu item
+      - In the settings page, click the "Applications" item on the menu panel to the left.
+      - In the "Applications" page, click the "Authorized OAuth Apps" tab.
+      - If "ngmaterial-seed" is not on the list, then stop. Your github account knows nothing about this app, yet. Otherwise, click the "Revoke" button, and in the confirmation dialog click "I understad, revoke access".
+   2. Ensure you are logged out from github site
+      - Still in the same browser tab as step #1, click the avatar on the upper left corner; context menu will show up
+      - Click the "Sign out" menu item.
+   3. Ensure you are logged out from this application
+      - Open another browser tab, navigate to http://localhost:8080
+      - If it shows the login page, then stop here. You are already logged out. Otherwise, click the gear icon on the upper left corner; context menu will show up
+      - Click the "Logout" menu item; you should be taken the login page.
+   4. Perform log in
+      - Still in the same browser tab as step 3, click the "Sign in with Github" button; a dialog will show up, asking you to enter your github credentials.   
+      - Enter your github credentials, and click the "Sign in" button; you will be taken to the github OAuth 2.0 authorization dialog.
+      - Click the "Authorize rakamoviz" button; the dialog will close by itself, and you will be taken to the application's main page.
+   5. Verify the application's main page:
+      - In case you have repositories in your github account, the will be displayed here (in the default page of this application; "Repositories").
+      - So please use a github account that have at least one project in order to test this application.
+
+2. Verify logout function (without logging out from github)
+   Desc: ensure this application clears authentication data on the browser once logged out.
+   
+   Steps:
+   1. Perform logout
+      - Still in the same browser tab as test 1 step 3 (assuming you are still logged in), click the gear icon on the upper left corner; context menu will show up
+      - Click the "Logout" menu item; you should be taken the login page. 
+      - Try cheating your way directlty to a page in the application, type http://127.0.0.1:8080/#/repositories
+        - The application should be adamant in showing the login page. 
+   
+3. Verify login function, while still logged in to github site.
+   Desc: this should be a continuation of test #1 (meaning: your account by now should already authorized access to ngmaterial-seed application, and you are currently logged in to the github site). This checks that the login mechanism of the application no longer asks for github credentials and authorization for this particular case.
+   
+   Steps:
+   1. Ensure you are logged out from this application
+      - Open another browser tab, navigate to http://localhost:8080
+      - If it shows the login page, then stop here. You are already logged out. Otherwise, click the gear icon on the upper left corner; context menu will show up
+      - Click the "Logout" menu item; you should be taken the login page.
+   2. Perform log in
+      - Still in the same browser tab as step 3, click the "Sign in with Github" button; a dialog will show up, but it should close by itself immediately.
+   3. Verify the application's main page:
+      - In case you have repositories in your github account, the will be displayed here (in the default page of this application; "Repositories").
+      - So please use a github account that have at least one project in order to test this application.
+
+4. Verify login function, while still logged in to github site, but this account no longer authorizes ngmaterial-seed app.
+   Desc: this should be a continuation of test #3 (meaning: you are currently logged in to the github site, but this account knows nothing about ngmaterial-seed appication). This checks that the login mechanism of the application no longer asks for github credentials, but will ask authorization for this particular case.
+   
+   Steps:
+   2. Ensure your github account knows nothing about this application
+      - Open a browser tab, navigate to github.com
+      - Click the avatar on the upper left corner; context menu will show up
+      - Click the "Settings" menu item
+      - In the settings page, click the "Applications" item on the menu panel to the left.
+      - In the "Applications" page, click the "Authorized OAuth Apps" tab.
+      - If "ngmaterial-seed" is not on the list, then stop. Your github account knows nothing about this app, yet. Otherwise, click the "Revoke" button, and in the confirmation dialog click "I understad, revoke access".
+   2. Ensure you are logged out from this application
+      - Open another browser tab, navigate to http://localhost:8080
+      - If it shows the login page, then stop here. You are already logged out. Otherwise, click the gear icon on the upper left corner; context menu will show up
+      - Click the "Logout" menu item; you should be taken the login page.
+   3. Perform log in
+      - Still in the same browser tab as step 3, click the "Sign in with Github" button; a dialog will show up asking you for authorization.
+      - Click the "Authorize rakamoviz" button; the dialog will close by itself, and you will be taken to the application's main page.
+   4. Verify the application's main page:
+      - In case you have repositories in your github account, the will be displayed here (in the default page of this application; "Repositories").
+      - So please use a github account that have at least one project in order to test this application.
+
+5. Verify it shows repositories that belongs to your github account.
+   Desc: this test is continuation of step #4. Meaning: you are already logged in to the application and github site.
+
+   Steps:
+
+   1. Create a new Project in the github site
+   2. In the application window, while you are in the http://127.0.0.1:8080/#/repositories page, click the browser's refresh button. Your new project should show up in the list (the panel to the left in the content pane).
+
+6. Verify it shows issues that belong to the selected repository.
+   Desc: this test is continuation of step #5. 
+
+   Steps:
+
+   1. In the github site, go to the project you created in step #4, and create a new issue. 
+   2. In the application window, while you are in the http://127.0.0.1:8080/#/repositories page, select the project where you added issue to (click the project in the left panel).
+   3. The issues will be displayed on the right panel.
+
+7. Verify "Reload" button fetches the issues for the selected repository
+
+   Steps: 
+
+   1. In the github site, go to the project you created in step #4, and create another issue. 
+   2. In the right panel in the application, click the "Reload" button. You new issue should now appear in the list.
+
+8. Verify "Create issue" from the application.
+
+   Steps: 
+
+   1. In the github site, go to the project you created in step #4, and create another issue. 
+   2. In the right panel in the application, click the "Create..." button; a dialog box should be opened.
+   3. Fill in the form, and click the "Submit" button; the dialog will be closed automatically, and the right pane will refresh itself, now showing your newly created issue.
+   4. Check that the issue appears in the github site as well.
