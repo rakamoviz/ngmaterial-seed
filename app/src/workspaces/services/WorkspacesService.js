@@ -3,12 +3,12 @@ class WorkspacesService {
     this.$state = $state
     this.workspaces = [
       {
-        initialState: 'repositories_main',
+        initialState: 'repositories',
         name: 'Repositories',
         icon: 'google_plus'
       },
       {
-        initialState: 'settings_main',
+        initialState: 'settings',
         name: 'Settings',
         icon: 'hangouts'
       }

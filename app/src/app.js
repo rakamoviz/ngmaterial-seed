@@ -57,5 +57,5 @@ export default angular.module('app', appDependencies)
   	controller: AppController
   })
   .config(($stateProvider, $urlRouterProvider) => {
-		console.log($stateProvider, $urlRouterProvider)
+		//console.log($stateProvider, $urlRouterProvider)
   })

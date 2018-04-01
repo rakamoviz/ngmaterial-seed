@@ -10,12 +10,25 @@ class RepositoriesService {
   getRepositories() {
     return this.accountService.getProfile().then(profile => {
       if (profile == undefined) throw "profile is null"
-      console.log(this.config.github.baseUrl + "user/repos", ":", profile.github.pass.access_token)
       return this.$http.get(this.config.github.baseUrl + "user/repos", {
         headers: {
           Authorization: "Bearer " + profile.github.pass.access_token
         }
-      })
+      }).then(response => response.data)
+    })
+  }
+
+  getIssues(repo, state) {
+    return this.accountService.getProfile().then(profile => {
+      if (profile == undefined) throw "profile is null"
+      return this.$http.get(this.config.github.baseUrl + "repos/" + repo.full_name + "/issues", {
+        headers: {
+          Authorization: "Bearer " + profile.github.pass.access_token
+        },
+        params: {
+          state: state ? state : "open"
+        }
+      }).then(response => response.data)
     })
   }
 }

@@ -3,8 +3,8 @@ import * as pages from './pages'
 export default {
   states: [
     {
-      name : 'settings_main',
-      url  : '/settings/main',
+      name : 'settings',
+      url  : '/settings',
       reloadOnSearch : false,
       views: {
         '@': {

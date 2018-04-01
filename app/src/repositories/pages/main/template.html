@@ -1,10 +1,25 @@
-<md-list flex>
-  <md-list-item class="md-3-line" ng-repeat="repo in $ctrl.repositories.data" ng-click="null">
-    <img ng-src="{{repo.owner.avatar_url}}" class="md-avatar" />
-    <div class="md-list-item-text" layout="column">
-      <h3>{{ repo.full_name }}</h3>
-      <h4>{{ repo.open_issues }} open issues</h4>
-      <p>{{ repo.description }}</p>
-    </div>
-  </md-list-item>
-</md-list>
+<div layout="row">
+  <md-card flex>
+    <md-card-header md-colors="::{backgroundColor: 'default-primary-300'}">
+      <md-card-header-text>
+        <span class="md-title">Repositories</span>
+        <span class="md-subhead">Github: {{$ctrl.profile.github.profile.email}}</span>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-content>
+      <md-list flex>
+        <md-list-item class="md-3-line" ng-repeat="repo in $ctrl.repositories" 
+          ng-click="$ctrl.showIssues(repo)"
+          md-colors="{background: 'default-primary-100-{{$ctrl.repo == repo ? 0.5 : 0}}'}">
+          <img ng-src="{{repo.owner.avatar_url}}" class="md-avatar" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ repo.full_name }}</h3>
+            <h4>{{ repo.open_issues }} open issues</h4>
+            <p>{{ repo.description }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-card-content>
+  </md-card>
+  <ui-view flex></ui-view>
+</div>

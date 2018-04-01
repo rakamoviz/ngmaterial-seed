@@ -1,20 +1,38 @@
+import _ from 'lodash'
 import * as pages from './pages'
 
 export default {
   states: [
     {
-      name : 'repositories_main',
-      url  : '/repositories/main',
+      name : 'repositories',
+      url  : '/repositories',
       reloadOnSearch : false,
       views: {
         '@': {
           component: pages.MainPage.name
         }
       },
+      resolve: {
+        repositories: RepositoriesService => RepositoriesService.getRepositories()
+      },
+      loginRequired: true
+    },
+    {
+      name : 'repositories.detail',
+      url  : '/{repoId}',
+      reloadOnSearch : false,
+      component: pages.DetailPage.name,
       params: {
       },
       resolve: {
-        repositories: RepositoriesService => RepositoriesService.getRepositories()
+        repo: (repositories, $stateParams) => {
+          return _.find(
+            repositories, repo => repo.id == $stateParams.repoId
+          )
+        },
+        issues: (repo, RepositoriesService) => {
+          return RepositoriesService.getIssues(repo)
+        }
       },
       loginRequired: true
     }
