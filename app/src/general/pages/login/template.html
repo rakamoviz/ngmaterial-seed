@@ -1,3 +1,6 @@
-Login
-
-<button ng-click="$ctrl.authenticate()">Sign in with GitHub</button>
+<md-card flex>
+  <img ng-src="assets/img/github.png" class="md-card-image" alt="Washed Out">
+  <md-card-actions layout="row" layout-align="start center">
+    <md-button flex md-colors="::{color: 'default-primary-400'}" ng-click="$ctrl.authenticate()">Sign-in with Github</md-button>
+  </md-card-actions>
+</md-card>
