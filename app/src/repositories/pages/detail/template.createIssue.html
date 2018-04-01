@@ -1,0 +1,39 @@
+<md-dialog aria-label="Create issue" class="fullscreen-dialog">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Create issue</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+          <md-icon md-svg-icon="close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div flex layout-fill layout="column">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Title</label>
+          <input ng-model="$ctrl.issueForm.title">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Body</label>
+          <textarea ng-model="$ctrl.issueForm.body" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-input-container>
+          <label>Labels</label>
+          <md-select ng-model="$ctrl.issueForm.labels" multiple>
+            <md-option ng-value="label" ng-repeat="label in $ctrl.labels">{{label}}</md-option>
+          </md-select>
+        </md-input-container>
+      <div layout="column">
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="$ctrl.answer()">
+        Submit
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
